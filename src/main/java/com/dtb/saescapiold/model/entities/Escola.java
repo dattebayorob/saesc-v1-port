@@ -25,6 +25,9 @@ public class Escola {
 	@OneToOne
 	@JoinColumn(name = "cod_prefixo")
 	private EscolaPrefixo prefixo;
+	@OneToOne
+	@JoinColumn(name = "cod_endereco")
+	private EscolaEndereco endereco;
 	@Column(name = "email_escola")
 	private String email;
 	public Long getId() {
@@ -63,11 +66,19 @@ public class Escola {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public EscolaEndereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(EscolaEndereco endereco) {
+		this.endereco = endereco;
+	}
 	@Override
 	public String toString() {
 		return "Escola [id=" + id + ", inep=" + inep + ", circuito=" + circuito + ", nome=" + nome + ", prefixo="
-				+ prefixo + ", email=" + email + "]";
+				+ prefixo + ", endereco=" + endereco + ", email=" + email + "]";
 	}
+
 	
 	
 	

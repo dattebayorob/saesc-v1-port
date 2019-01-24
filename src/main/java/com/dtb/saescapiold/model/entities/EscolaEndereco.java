@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +14,6 @@ public class EscolaEndereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cod_endereco")
 	private Long id;
-	@OneToOne
-	@JoinColumn(name = "cod_escola")
-	private Escola escola;
 	@Column(name = "rua_escola")
 	private String rua;
 	@Column(name = "bairro_escola")
@@ -34,12 +29,6 @@ public class EscolaEndereco {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Escola getEscola() {
-		return escola;
-	}
-	public void setEscola(Escola escola) {
-		this.escola = escola;
 	}
 	public String getRua() {
 		return rua;
@@ -73,7 +62,7 @@ public class EscolaEndereco {
 	}
 	@Override
 	public String toString() {
-		return "EscolaEndereco [id=" + id + ", escola=" + escola + ", rua=" + rua + ", bairro=" + bairro + ", regiao="
+		return "EscolaEndereco [id=" + id + ", rua=" + rua + ", bairro=" + bairro + ", regiao="
 				+ regiao + ", telefone=" + telefone + ", telefone2=" + telefone2 + "]";
 	}
 	

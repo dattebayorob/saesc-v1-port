@@ -1,7 +1,7 @@
 package com.dtb.saescapiold.model.repositories;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -21,18 +21,25 @@ import com.dtb.saescapiold.model.entities.EscolaIp;
 public class EscolaIpRepositoryTest {
 	@Autowired
 	private EscolaIpRepository ipRepository;
-private static final Log log = LogFactory.getLog(EscolaRepositoryTest.class);
-	
+	private static final Log log = LogFactory.getLog(EscolaRepositoryTest.class);
+	private static Long ID_ESCOLA = Long.valueOf(3);
+
 	@Before
 	public void init() {
 		log.info("Iniciando testes para EscolaIpRepository");
 	}
-	
+
 	@Test
 	public void testFindAll() {
 		List<EscolaIp> ips = ipRepository.findAll();
 		System.out.println(ips.size());
 		assertFalse(ips.isEmpty());
-		//assertTrue(ips.size() == 182);
+		// assertTrue(ips.size() == 182);
+	}
+
+	@Test
+	public void testFindByEscolaId() {
+		EscolaIp ip = ipRepository.findByEscolaId(ID_ESCOLA);
+		assertNotNull(ip);
 	}
 }
