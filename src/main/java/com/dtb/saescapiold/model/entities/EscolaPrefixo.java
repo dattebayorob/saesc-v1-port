@@ -16,6 +16,12 @@ public class EscolaPrefixo {
 	private Long id;
 	@Column(name = "nome_prefixo")
 	private String nome;
+	public EscolaPrefixo() {
+		// TODO Auto-generated constructor stub
+	}
+	public EscolaPrefixo(String nome){
+		this.nome = nome;
+	}
 	public Long getId() {
 		return id;
 	}

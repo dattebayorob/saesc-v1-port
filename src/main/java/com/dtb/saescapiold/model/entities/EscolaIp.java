@@ -24,6 +24,14 @@ public class EscolaIp {
 	private Long statusOi;
 	@Column(name = "status_gigafor")
 	private Long statusGigafor;
+	public EscolaIp() {
+		// TODO Auto-generated constructor stub
+	}
+	public EscolaIp(Escola escola, String oi, String giga) {
+		this.escola = escola;
+		this.oi = oi;
+		this.giga = giga;
+	}
 	public Long getId() {
 		return id;
 	}

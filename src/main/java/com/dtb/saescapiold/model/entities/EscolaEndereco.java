@@ -24,6 +24,15 @@ public class EscolaEndereco {
 	private String telefone;
 	@Column(name = "telefone2_escola")
 	private String telefone2;
+	public EscolaEndereco() {
+		// TODO Auto-generated constructor stub
+	}
+	public EscolaEndereco(String rua,String bairro,String regiao,String telefone) {
+		this.rua = rua;
+		this.bairro = bairro;
+		this.regiao = regiao;
+		this.telefone = telefone;
+	}
 	public Long getId() {
 		return id;
 	}
