@@ -27,11 +27,11 @@ public class ConverterEntidades {
 		escolaV2.setCrede("SEFOR_"+endereco.getRegiao());
 	}
 	
-	public List<Link> converterLinks(EscolaIp ips){
+	public List<Link> converterLinks(Long escolaV2Id,EscolaIp ips){
 		return new ArrayList<Link>() {
 			{
-				add(new Link(ips.getOi(), ips.getEscola().getCircuito(),Long.valueOf(1), ips.getEscola()));
-				add(new Link(ips.getGiga(), null,Long.valueOf(2),ips.getEscola()));
+				add(new Link(ips.getOi(), ips.getEscola().getCircuito(),Long.valueOf(1), new EscolaV2() {{setId(escolaV2Id);}}));
+				add(new Link(ips.getGiga(), null,Long.valueOf(2),new EscolaV2() {{setId(escolaV2Id);}}));
 			}
 		};
 	}

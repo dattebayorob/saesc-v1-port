@@ -23,11 +23,11 @@ public class Link{
 	private String status;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_escola")
-	private Escola escola;
+	private EscolaV2 escola;
 	public Link() {
 		// TODO Auto-generated constructor stub
 	}
-	public Link(String ip, String circuito, Long provedor, Escola escola) {
+	public Link(String ip, String circuito, Long provedor, EscolaV2 escola) {
 		this.ip = ip;
 		this.circuito = circuito;
 		this.provedor = provedor;
@@ -64,10 +64,10 @@ public class Link{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Escola getEscola() {
+	public EscolaV2 getEscola() {
 		return escola;
 	}
-	public void setEscola(Escola escola) {
+	public void setEscola(EscolaV2 escola) {
 		this.escola = escola;
 	}
 	

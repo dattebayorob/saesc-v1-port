@@ -50,7 +50,7 @@ public class ConverterEntidadesTest {
 	
 	@Test
 	public void testConverterLinks() {
-		List<Link> links = converter.converterLinks(ips);
+		List<Link> links = converter.converterLinks(Long.valueOf(1),ips);
 		assertFalse(links.isEmpty());
 		assertEquals(links.size(), 2);
 	}

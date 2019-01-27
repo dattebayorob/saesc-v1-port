@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dtb.saescapiold.model.converters.ConverterEntidades;
 import com.dtb.saescapiold.model.entities.Escola;
+import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.service.EscolaIpService;
 import com.dtb.saescapiold.service.EscolaService;
 import com.dtb.saescapiold.service.EscolaV2Service;
@@ -32,9 +33,9 @@ public class ConverterController {
 	public ResponseEntity<String> converterTodos() {
 		List<Escola> escolas = escolaService.buscarTodas();
 		escolas.forEach(escola -> {
-			v2Service.adicionar(converter.toV2(escola));
-			//converter.converterLinks(ipService.buscarPelaEscola(escola.getId()))
-				//	.forEach(link -> linkService.adicionar(link));
+			EscolaV2 v2 = v2Service.adicionar(converter.toV2(escola));
+			converter.converterLinks(v2.getId(),ipService.buscarPelaEscola(escola.getId()))
+					.forEach(link -> linkService.adicionar(link));
 		});
 		return ResponseEntity.ok().build();
 	}
