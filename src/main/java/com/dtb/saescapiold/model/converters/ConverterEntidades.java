@@ -31,7 +31,8 @@ public class ConverterEntidades {
 		return new ArrayList<Link>() {
 			{
 				add(new Link(ips.getOi(), ips.getEscola().getCircuito(),Long.valueOf(1), new EscolaV2() {{setId(escolaV2Id);}}));
-				add(new Link(ips.getGiga(), null,Long.valueOf(2),new EscolaV2() {{setId(escolaV2Id);}}));
+				if(ips.getGiga() != null)
+					add(new Link(ips.getGiga(), null,Long.valueOf(2),new EscolaV2() {{setId(escolaV2Id);}}));
 			}
 		};
 	}

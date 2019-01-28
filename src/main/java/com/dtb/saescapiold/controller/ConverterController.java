@@ -37,6 +37,6 @@ public class ConverterController {
 			converter.converterLinks(v2.getId(),ipService.buscarPelaEscola(escola.getId()))
 					.forEach(link -> linkService.adicionar(link));
 		});
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().body(escolas.size()+" Convertidas");
 	}
 }
