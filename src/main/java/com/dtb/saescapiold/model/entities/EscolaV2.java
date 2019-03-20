@@ -15,7 +15,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "escola_v2")
+@Table(schema = "V2", name = "escola" )
 public class EscolaV2{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

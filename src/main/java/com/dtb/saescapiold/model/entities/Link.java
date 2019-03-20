@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="escola_link")
+@Table(schema="V2", name="escola_link")
 public class Link{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
