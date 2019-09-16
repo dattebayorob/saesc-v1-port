@@ -9,8 +9,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "escola")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Escola {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,56 +39,4 @@ public class Escola {
 	private EscolaEndereco endereco;
 	@Column(name = "email_escola")
 	private String email;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getInep() {
-		return inep;
-	}
-	public void setInep(String inep) {
-		this.inep = inep;
-	}
-	public String getCircuito() {
-		return circuito;
-	}
-	public void setCircuito(String circuito) {
-		this.circuito = circuito;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public EscolaPrefixo getPrefixo() {
-		return prefixo;
-	}
-	public void setPrefixo(EscolaPrefixo prefixo) {
-		this.prefixo = prefixo;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public EscolaEndereco getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(EscolaEndereco endereco) {
-		this.endereco = endereco;
-	}
-	@Override
-	public String toString() {
-		return "Escola [id=" + id + ", inep=" + inep + ", circuito=" + circuito + ", nome=" + nome + ", prefixo="
-				+ prefixo + ", endereco=" + endereco + ", email=" + email + "]";
-	}
-
-	
-	
-	
 }

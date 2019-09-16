@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "escola_endereco")
+@Data
 public class EscolaEndereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,56 +27,11 @@ public class EscolaEndereco {
 	private String telefone;
 	@Column(name = "telefone2_escola")
 	private String telefone2;
-	public EscolaEndereco() {
-		// TODO Auto-generated constructor stub
-	}
+	public EscolaEndereco() {}
 	public EscolaEndereco(String rua,String bairro,String regiao,String telefone) {
 		this.rua = rua;
 		this.bairro = bairro;
 		this.regiao = regiao;
 		this.telefone = telefone;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getRua() {
-		return rua;
-	}
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-	public String getBairro() {
-		return bairro;
-	}
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-	public String getRegiao() {
-		return regiao;
-	}
-	public void setRegiao(String regiao) {
-		this.regiao = regiao;
-	}
-	public String getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-	public String getTelefone2() {
-		return telefone2;
-	}
-	public void setTelefone2(String telefone2) {
-		this.telefone2 = telefone2;
-	}
-	@Override
-	public String toString() {
-		return "EscolaEndereco [id=" + id + ", rua=" + rua + ", bairro=" + bairro + ", regiao="
-				+ regiao + ", telefone=" + telefone + ", telefone2=" + telefone2 + "]";
-	}
-	
-	
 }

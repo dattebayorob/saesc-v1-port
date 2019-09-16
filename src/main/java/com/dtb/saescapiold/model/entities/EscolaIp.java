@@ -7,8 +7,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "escola_ip")
+@Data
 public class EscolaIp {
 	@Id
 	@Column(name = "cod_ip")
@@ -32,48 +35,5 @@ public class EscolaIp {
 		this.oi = oi;
 		this.giga = giga;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Escola getEscola() {
-		return escola;
-	}
-	public void setEscola(Escola escola) {
-		this.escola = escola;
-	}
-	public String getOi() {
-		return oi;
-	}
-	public void setOi(String oi) {
-		this.oi = oi;
-	}
-	public String getGiga() {
-		return giga;
-	}
-	public void setGiga(String giga) {
-		this.giga = giga;
-	}
-	public Long getStatusOi() {
-		return statusOi;
-	}
-	public void setStatusOi(Long statusOi) {
-		this.statusOi = statusOi;
-	}
-	public Long getStatusGigafor() {
-		return statusGigafor;
-	}
-	public void setStatusGigafor(Long statusGigafor) {
-		this.statusGigafor = statusGigafor;
-	}
-	@Override
-	public String toString() {
-		return "EscolaIp [id=" + id + ", escola=" + escola + ", oi=" + oi + ", giga=" + giga + ", statusOi=" + statusOi
-				+ ", statusGigafor=" + statusGigafor + "]";
-	}
-	
-	
 	
 }

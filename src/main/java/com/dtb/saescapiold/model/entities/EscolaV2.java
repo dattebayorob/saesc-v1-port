@@ -14,8 +14,15 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 @Entity
 @Table(schema = "V2", name = "escola" )
+@Data
+@Builder
+@AllArgsConstructor
 public class EscolaV2{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,93 +43,10 @@ public class EscolaV2{
 	@OneToMany(mappedBy = "escola", fetch = FetchType.LAZY)
 	private List<Link> links;
 	
+	public EscolaV2() {}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
+	public EscolaV2(Long id) {
 		this.id = id;
-	}
-
-	public String getPrefixo() {
-		return prefixo;
-	}
-
-	public void setPrefixo(String prefixo) {
-		this.prefixo = prefixo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getInep() {
-		return inep;
-	}
-
-	public void setInep(String inep) {
-		this.inep = inep;
-	}
-
-	public String getCrede() {
-		return crede;
-	}
-
-	public void setCrede(String crede) {
-		this.crede = crede;
-	}
-
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-	public Date getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(Date dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-
-	public List<Link> getLinks() {
-		return links;
-	}
-
-	public void setLinks(List<Link> links) {
-		this.links = links;
 	}
 
 	@PreUpdate
