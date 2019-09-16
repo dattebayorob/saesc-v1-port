@@ -1,7 +1,12 @@
 package com.dtb.saescapiold.model.converters;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
+import java.util.stream.Stream;
+
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.dtb.saescapiold.model.entities.Escola;
 import com.dtb.saescapiold.model.entities.EscolaEndereco;
@@ -9,32 +14,37 @@ import com.dtb.saescapiold.model.entities.EscolaIp;
 import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.model.entities.Link;
 
+@Component
 public class ConverterEntidades {
 	
 	public EscolaV2 toV2(Escola escola) {
-		EscolaV2 escolaV2 = new EscolaV2();
-		escolaV2.setNome(escola.getNome());
-		escolaV2.setPrefixo(escola.getPrefixo().getNome());
-		escolaV2.setInep(escola.getInep());
-		converterEndereco(escola.getEndereco(), escolaV2);
-		return escolaV2;
-	}
-
-	private void converterEndereco(EscolaEndereco endereco, EscolaV2 escolaV2) {
-		escolaV2.setRua(endereco.getRua());
-		escolaV2.setBairro(endereco.getBairro());
-		escolaV2.setTelefone(endereco.getTelefone());
-		escolaV2.setCrede("SEFOR_"+endereco.getRegiao());
+		EscolaEndereco endereco = escola.getEndereco();
+		return EscolaV2
+				.builder()
+					.nome(escola.getNome())
+					.prefixo(escola.getPrefixo().getNome())
+					.inep(escola.getInep())
+					.rua(endereco.getRua())
+					.bairro(endereco.getBairro())
+					.telefone(endereco.getTelefone())
+					.crede("SEFOR_"+endereco.getRegiao())
+					.build();
 	}
 	
 	public List<Link> converterLinks(Long escolaV2Id,EscolaIp ips){
-		return new ArrayList<Link>() {
-			{
-				add(new Link(ips.getOi(), ips.getEscola().getCircuito(),Long.valueOf(1), new EscolaV2() {{setId(escolaV2Id);}}));
-				if(ips.getGiga() != null)
-					add(new Link(ips.getGiga(), null,Long.valueOf(2),new EscolaV2() {{setId(escolaV2Id);}}));
-			}
-		};
+		return Stream
+				.of(ips.getOi(), ips.getGiga())
+				.filter(StringUtils::hasText)
+				.map(ip -> {
+					String circuito = null;
+					Long provedor = 2l;
+					if( !ip.startsWith("172") ) {
+						circuito = ips.getEscola().getCircuito();
+						provedor = 1l;
+					};
+					return new Link(ip, circuito, provedor, new EscolaV2(escolaV2Id));
+					}
+				).collect(toList());
 	}
 
 }
