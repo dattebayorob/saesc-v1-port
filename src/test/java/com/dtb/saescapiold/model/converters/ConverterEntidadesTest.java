@@ -6,13 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.dtb.saescapiold.model.entities.Escola;
 import com.dtb.saescapiold.model.entities.EscolaEndereco;
@@ -21,22 +16,20 @@ import com.dtb.saescapiold.model.entities.EscolaPrefixo;
 import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.model.entities.Link;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
 public class ConverterEntidadesTest {
-	private static final Log log = LogFactory.getLog(ConverterEntidades.class);
-	private ConverterEntidades converter;
-	private Escola escola;
-	private EscolaIp ips;
+	ConverterEntidades converter = new ConverterEntidades();
+	Escola escola;
+	EscolaIp ips;
+	Long escolaId = 1l;
 	
 	@Before
 	public void init() {
-		converter = new ConverterEntidades();
-		escola = new Escola();
-		escola.setNome("Escola de Testes");
-		escola.setEndereco(new EscolaEndereco("Rua","Bairro","1","31000000"));
-		escola.setPrefixo(new EscolaPrefixo("EEFM"));
-		escola.setCircuito("circuito");
+		escola = Escola.builder()
+					.nome("Escola de Testes")
+					.endereco(new EscolaEndereco("Rua","Bairro","1","31000000"))
+					.prefixo(new EscolaPrefixo("EEFM"))
+					.circuito("circuito")
+				.build();
 		ips = new EscolaIp(escola,"200.0.0.200","172.0.0.172");
 	}
 	
@@ -50,8 +43,16 @@ public class ConverterEntidadesTest {
 	
 	@Test
 	public void testConverterLinks() {
-		List<Link> links = converter.converterLinks(Long.valueOf(1),ips);
+		List<Link> links = converter.converterLinks(escolaId,ips);
 		assertFalse(links.isEmpty());
 		assertEquals(links.size(), 2);
+	}
+	
+	@Test
+	public void deveConverterApenasUmLink() {
+		ips.setGiga(null);
+		List<Link> links = converter.converterLinks(escolaId, ips);
+		assertFalse(links.isEmpty());
+		assertEquals(links.size(), 1);
 	}
 }

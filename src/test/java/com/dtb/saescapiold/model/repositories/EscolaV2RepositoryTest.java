@@ -24,12 +24,12 @@ public class EscolaV2RepositoryTest {
 	
 	@Before
 	public void init(){
-		escola = new EscolaV2();
-		escola.setNome("Escola V2");
-		escola.setPrefixo("EEFM");
-		escola.setCrede("SEFOR_1");
-		escola.setInep("inep");
-		escola.setRua("Rua");
+		escola = EscolaV2.builder()
+				.nome("Escola V2")
+				.prefixo("EEFM")
+				.crede("SEFOR_1")
+				.inep("inep")
+				.rua("Rua").build();
 		repository.save(escola);
 	}
 	@After

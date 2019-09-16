@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.dtb.saescapiold.model.entities.EscolaEndereco;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class EscolaEnderecoRepositoryTest {
 	@Autowired
 	private EscolaEnderecoRepository enderecoRepository;
-	private static final Log log = LogFactory.getLog(EscolaRepositoryTest.class);
 
 	@Before
 	public void init() {

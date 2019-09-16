@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.dtb.saescapiold.model.entities.Escola;
 import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.model.entities.Link;
 

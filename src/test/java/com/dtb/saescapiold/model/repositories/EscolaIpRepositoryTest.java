@@ -5,8 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.dtb.saescapiold.model.entities.EscolaIp;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class EscolaIpRepositoryTest {
 	@Autowired
 	private EscolaIpRepository ipRepository;
-	private static final Log log = LogFactory.getLog(EscolaRepositoryTest.class);
 	private static Long ID_ESCOLA = Long.valueOf(3);
 
 	@Before
