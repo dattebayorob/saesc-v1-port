@@ -3,6 +3,8 @@ package com.dtb.saescapiold.model.converters;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
@@ -11,6 +13,7 @@ import org.springframework.util.StringUtils;
 import com.dtb.saescapiold.model.entities.Escola;
 import com.dtb.saescapiold.model.entities.EscolaEndereco;
 import com.dtb.saescapiold.model.entities.EscolaIp;
+import com.dtb.saescapiold.model.entities.EscolaPrefixo;
 import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.model.entities.Link;
 
@@ -22,7 +25,7 @@ public class ConverterEntidades {
 		return EscolaV2
 				.builder()
 					.nome(escola.getNome())
-					.prefixo(escola.getPrefixo().getNome())
+					.prefixo(Optional.ofNullable(escola.getPrefixo()).filter(Objects::nonNull).map(EscolaPrefixo::getNome).orElseGet(() -> null))
 					.inep(escola.getInep())
 					.rua(endereco.getRua())
 					.bairro(endereco.getBairro())
