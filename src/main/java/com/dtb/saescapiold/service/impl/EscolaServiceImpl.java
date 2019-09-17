@@ -28,15 +28,21 @@ public class EscolaServiceImpl implements EscolaService{
 		return escolaRepository
 				.findAll()
 				.stream()
-				.peek(escola -> {
+				.map(escola -> {
 					log.info("Convertendo escola: {}", escola);
-					EscolaV2 v2 = v2Service.adicionar(converter.toV2(escola));
-					log.info("Nova entidade escola gerada de Id: {}", escola.getId());
-					converter.converterLinks(v2.getId(), ipService.buscarPelaEscola(escola.getId()))
-							.forEach(link -> {
-								linkService.adicionar(link);
-								log.info("Link adicionado para a escola :{}",escola.getNome());
-								});
+					try {
+						EscolaV2 v2 = v2Service.adicionar(converter.toV2(escola));
+						log.info("Nova entidade escola gerada de Id: {}", escola.getId());
+						converter.converterLinks(v2.getId(), ipService.buscarPelaEscola(escola.getId()))
+						.forEach(link -> {
+							linkService.adicionar(link);
+							log.info("Link adicionado para a escola :{}",escola.getNome());
+						});						
+					} catch (Exception e) {
+						log.error("Erro na inserção",e);
+					}
+					
+					return escola;
 				})
 				.count();
 	}
