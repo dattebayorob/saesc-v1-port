@@ -1,5 +1,7 @@
 package com.dtb.saescapiold.service.impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dtb.saescapiold.model.converters.ConverterEntidades;
@@ -45,5 +47,10 @@ public class EscolaServiceImpl implements EscolaService{
 					return escola;
 				})
 				.count();
+	}
+
+	@Override
+	public Page<EscolaV2> buscarEscolasConvertidasPaginado(Pageable pageable) {
+		return v2Service.buscarTodas(pageable);
 	}
 }

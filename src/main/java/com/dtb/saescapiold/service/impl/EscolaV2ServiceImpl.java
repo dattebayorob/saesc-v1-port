@@ -1,22 +1,23 @@
 package com.dtb.saescapiold.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dtb.saescapiold.model.entities.EscolaV2;
 import com.dtb.saescapiold.model.repositories.EscolaV2Repository;
 import com.dtb.saescapiold.service.EscolaV2Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EscolaV2ServiceImpl implements EscolaV2Service {
-	@Autowired
-	private EscolaV2Repository repository;
+	private final EscolaV2Repository repository;
 
 	@Override
-	public List<EscolaV2> buscarTodas() {
-		return repository.findAll();
+	public Page<EscolaV2> buscarTodas(Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 	@Override
